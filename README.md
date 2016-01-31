@@ -10,7 +10,7 @@ I've wanted to get away from the "metrics-graphite.jar" method of getting metric
 * To enforce SSL and authentication on the InfluxDB end (which means no collectd or tsdb plugins)
 
 ## The solution:
-* Download the Jolokia-agent JAR file to /usr/share/java: ```sudo wget http://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.3.2/jolokia-jvm-1.3.2-agent.jar -o /usr/share/java/jolokia-jvm-1.3.2-agent.jar```
+* Download the Jolokia-agent JAR file to /usr/share/java: ```http://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.3.2/jolokia-jvm-1.3.2-agent.jar```
 * Configure Cassandra's startup script to include the Jolokia agent with the defaults file provided in ```etc/default/cassandra```, then re-start Cassandra. It should now be running Jolokia (listening on ```http://localhost:8778```)
 * Install telegraf https://influxdata.com/downloads/
 * Use the config file provided under ```etc/telegraf/telegraf.d/telegraf-jolokia-cassandra.conf``` - this will periodically collect the pre-defined metrics from Jolkia, and Telegraf will forward them to wherever you like
