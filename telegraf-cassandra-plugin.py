@@ -3,9 +3,7 @@ import argparse
 import json
 import urllib
 
-# Pick up 6 important metrics:
-# for metric_name in ['ReadLatency', 'CoordinatorReadLatency', 'WriteLatency', 'ReadTotalLatency', 'WriteTotalLatency', 'LiveDiskSpaceUsed']:
-
+# Command-line arguments:
 parser = argparse.ArgumentParser(
 	description = 'Process some integers.'
 )
@@ -27,7 +25,6 @@ parser.add_argument(
 	default = 'ReadLatency',
 	help = 'Metric to get [default="ReadLatency", "CoordinatorReadLatency", "WriteLatency", "ReadTotalLatency", "WriteTotalLatency", "LiveDiskSpaceUsed"]'
 )
-
 args = parser.parse_args()
 
 
