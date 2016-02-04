@@ -50,7 +50,11 @@ for column_family_path in jolokia_data['value']:
 	# Now derive the values:
 	field_values = []
 	for field in jolokia_data['value'][column_family_path]:
-		field_values.append("%s=%s" % (field, jolokia_data['value'][column_family_path][field]))
+		field_value = jolokia_data['value'][column_family_path][field]
+		if(type(field_value) == int) | (type(field_value) == float):
+			field_values.append('%s=%s' % (field, field_value))
+		else:
+			field_values.append('%s="%s"' % (field, field_value))
 
 	# Now print the metric out in Influx format ("cpu,cpu=cpu0,host=foo,datacenter=us-east usage_idle=99,usage_busy=1"):
 	print("cassandra_columnfamily_%s,keyspace=%s,column_family=%s %s" % (args.metric_name, tags['keyspace'], tags['scope'], ','.join(field_values)))
