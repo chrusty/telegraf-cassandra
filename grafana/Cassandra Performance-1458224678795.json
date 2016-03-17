@@ -1,0 +1,1828 @@
+{
+  "id": 36,
+  "title": "Cassandra Performance",
+  "originalTitle": "Cassandra Performance",
+  "tags": [
+    "cassandra",
+    "influxdb",
+    "telegraf"
+  ],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {
+            "50th": "#BF1B00",
+            "75th": "#BF1B00",
+            "95th": "#E5AC0E",
+            "98th": "#508642",
+            "Free": "#629E51",
+            "Mean": "#E0752D",
+            "Read": "#BF1B00",
+            "Upper 95th": "#BF1B00",
+            "Used": "#BF1B00",
+            "Write": "#1F78C1"
+          },
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 10,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 1,
+          "interval": "5m",
+          "leftYAxisLabel": "",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "98th",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT mean(\"read_latency_98thPercentile\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read_latency_98thPercentile"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ]
+            },
+            {
+              "alias": "95th",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT mean(\"read_latency_95thPercentile\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read_latency_95thPercentile"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ]
+            },
+            {
+              "alias": "75th",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT mean(\"read_latency_75thPercentile\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read_latency_75thPercentile"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Read Latency",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "µs",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {
+            "Max": "#BF1B00",
+            "Mean": "#E5AC0E",
+            "Min": "#508642"
+          },
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 10,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 19,
+          "interval": "5m",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Max",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT max(\"storage_used_Count\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "storage_used_Count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            },
+            {
+              "alias": "Mean",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT mean(\"storage_used_Count\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "storage_used_Count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            },
+            {
+              "alias": "Min",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT min(\"storage_used_Count\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "storage_used_Count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "min"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Data Volume",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ]
+        }
+      ],
+      "title": "Row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {
+            "50th": "#BF1B00",
+            "75th": "#E5AC0E",
+            "95th": "#508642",
+            "Free": "#629E51",
+            "Mean": "#E0752D",
+            "Read": "#BF1B00",
+            "Upper 95th": "#BF1B00",
+            "Used": "#BF1B00",
+            "Write": "#1F78C1"
+          },
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 10,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 17,
+          "interval": "5m",
+          "leftYAxisLabel": "",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "95th",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT mean(\"write_latency_98thPercentile\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write_latency_98thPercentile"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ]
+            },
+            {
+              "alias": "75th",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT mean(\"write_latency_95thPercentile\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write_latency_95thPercentile"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ]
+            },
+            {
+              "alias": "50th",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT mean(\"read_latency_75thPercentile\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read_latency_75thPercentile"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Write Latency",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "µs",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {
+            "Long-term": "#BF1B00",
+            "Mid-term": "#C15C17",
+            "Short-term": "#EAB839"
+          },
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 9,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Long-term",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "auto"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "system",
+              "query": "SELECT mean(\"load15\") FROM \"system\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "load15"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            },
+            {
+              "alias": "Mid-term",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "auto"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "system",
+              "query": "SELECT mean(\"load5\") FROM \"system\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "load5"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            },
+            {
+              "alias": "Short-term",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "auto"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "system",
+              "query": "SELECT mean(\"load1\") FROM \"system\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "load1"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Load Averages",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {
+            "Free": "#629E51",
+            "OneMinuteRate": "#BF1B00",
+            "Read": "#BF1B00",
+            "Used": "#BF1B00",
+            "Write": "#0A50A1",
+            "eu-west-1a": "#BF1B00",
+            "eu-west-1b": "#BF1B00",
+            "eu-west-1c": "#BF1B00"
+          },
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 10,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 3,
+          "interval": "5m",
+          "leftYAxisLabel": "",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "OneMinuteRate",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT sum(\"read_latency_OneMinuteRate\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read_latency_OneMinuteRate"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Reads",
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "none",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {
+            "Free": "#629E51",
+            "OneMinuteRate": "#0A50A1",
+            "Read": "#BF1B00",
+            "Used": "#BF1B00",
+            "Write": "#0A50A1",
+            "eu-west-1a": "#0A50A1",
+            "eu-west-1b": "#0A50A1",
+            "eu-west-1c": "#0A50A1"
+          },
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 10,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 21,
+          "interval": "5m",
+          "leftYAxisLabel": "",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "OneMinuteRate",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT sum(\"write_latency_OneMinuteRate\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write_latency_OneMinuteRate"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Writes",
+          "tooltip": {
+            "shared": true,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "none",
+            "short"
+          ]
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {
+            "Free": "#629E51",
+            "Used": "#BF1B00"
+          },
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "interval": "5m",
+          "leftYAxisLabel": "",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_hostname",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "auto"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "hostname"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT last(\"heap_memory_usage\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval), \"hostname\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "heap_memory_usage"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "JVM Heap",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {
+            "Free": "#629E51",
+            "Used": "#BF1B00"
+          },
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 22,
+          "leftYAxisLabel": "",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_hostname",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "auto"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "hostname"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT last(\"nonheap_memory_usage\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval), \"hostname\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "nonheap_memory_usage"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "JVM Non-Heap",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ]
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {
+            "Max": "#BF1B00",
+            "Mean": "#E5AC0E",
+            "Min": "#508642"
+          },
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 10,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 11,
+          "interval": "5m",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Max",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT max(\"clients_native_Value\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "clients_native_Value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            },
+            {
+              "alias": "Mean",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT mean(\"clients_native_Value\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "clients_native_Value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            },
+            {
+              "alias": "Min",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT min(\"clients_native_Value\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "clients_native_Value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "min"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Native Clients",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {
+            "Max": "#BF1B00",
+            "Mean": "#E5AC0E",
+            "Min": "#508642"
+          },
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 10,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 18,
+          "interval": "5m",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Max",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT max(\"clients_thrift_Value\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "clients_thrift_Value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            },
+            {
+              "alias": "Mean",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT mean(\"clients_thrift_Value\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "clients_thrift_Value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            },
+            {
+              "alias": "Min",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "jolokia",
+              "query": "SELECT min(\"clients_thrift_Value\") FROM \"jolokia\" WHERE \"role\" =~ /$Role$/ AND \"region\" =~ /$Region$/ AND $timeFilter GROUP BY time($interval)",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "clients_thrift_Value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "min"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Thrift Clients",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        }
+      ],
+      "title": "New row"
+    }
+  ],
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "collapse": false,
+    "enable": true,
+    "notice": false,
+    "now": true,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "status": "Stable",
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ],
+    "type": "timepicker"
+  },
+  "templating": {
+    "list": [
+      {
+        "allFormat": "regex values",
+        "current": {
+          "text": "cassandra-premium",
+          "value": "cassandra-premium"
+        },
+        "datasource": "InfluxDB (Telegraf)",
+        "includeAll": false,
+        "multi": false,
+        "multiFormat": "regex values",
+        "name": "Role",
+        "options": [
+          {
+            "text": "cassandra-platform",
+            "value": "cassandra-platform",
+            "selected": false
+          },
+          {
+            "text": "cassandra-premium",
+            "value": "cassandra-premium",
+            "selected": true
+          }
+        ],
+        "query": "SHOW TAG VALUES WITH KEY = \"role\" WHERE role =~ /cassandra-/",
+        "refresh": true,
+        "type": "query"
+      },
+      {
+        "allFormat": "glob",
+        "current": {
+          "text": "eu-west-1",
+          "value": "eu-west-1"
+        },
+        "datasource": "InfluxDB (Telegraf)",
+        "includeAll": false,
+        "multi": false,
+        "multiFormat": "glob",
+        "name": "Region",
+        "options": [
+          {
+            "text": "eu-west-1",
+            "value": "eu-west-1",
+            "selected": true
+          },
+          {
+            "text": "us-east-1",
+            "value": "us-east-1",
+            "selected": false
+          }
+        ],
+        "query": "SHOW TAG VALUES WITH KEY = \"region\" WHERE role =~ /cassandra-/",
+        "refresh": true,
+        "type": "query"
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "30s",
+  "schemaVersion": 8,
+  "version": 82,
+  "links": []
+}

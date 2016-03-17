@@ -1,0 +1,1382 @@
+{
+  "id": 55,
+  "title": "Cassandra KeySpace",
+  "originalTitle": "Cassandra KeySpace",
+  "tags": [
+    "influxdb",
+    "cassandra"
+  ],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 1,
+          "interval": "5m",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_column_family",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "column_family"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "cassandra_tables_coordinatorreadlatency",
+              "query": "SELECT mean(\"95thPercentile\") FROM \"cassandra_tables_coordinatorreadlatency\" WHERE \"region\" =~ /$Region$/ AND \"role\" =~ /$Role$/ AND \"keyspace\" =~ /$KeySpace$/ AND $timeFilter GROUP BY time($interval), \"column_family\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "95thPercentile"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "keyspace",
+                  "operator": "=~",
+                  "value": "/$KeySpace$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Read Latency (u95)",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "µs",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "interval": "5m",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_column_family",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "column_family"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "cassandra_tables_writelatency",
+              "query": "SELECT mean(\"95thPercentile\") FROM \"cassandra_tables_writelatency\" WHERE \"region\" =~ /$Region$/ AND \"role\" =~ /$Role$/ AND \"keyspace\" =~ /$KeySpace$/ AND $timeFilter GROUP BY time($interval), \"column_family\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "95thPercentile"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "keyspace",
+                  "operator": "=~",
+                  "value": "/$KeySpace$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Write Latency (u95)",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "µs",
+            "short"
+          ]
+        }
+      ],
+      "title": "Row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 3,
+          "interval": "5m",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_column_family",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "column_family"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "cassandra_tables_readlatency",
+              "query": "SELECT sum(\"FiveMinuteRate\") FROM \"cassandra_tables_readlatency\" WHERE \"region\" =~ /$Region$/ AND \"role\" =~ /$Role$/ AND \"keyspace\" =~ /$KeySpace$/ AND $timeFilter GROUP BY time($interval), \"column_family\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "FiveMinuteRate"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "keyspace",
+                  "operator": "=~",
+                  "value": "/$KeySpace$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Read Rate",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 4,
+          "interval": "5m",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_column_family",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "column_family"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "cassandra_tables_writelatency",
+              "query": "SELECT sum(\"FiveMinuteRate\") FROM \"cassandra_tables_writelatency\" WHERE \"region\" =~ /$Region$/ AND \"role\" =~ /$Role$/ AND \"keyspace\" =~ /$KeySpace$/ AND $timeFilter GROUP BY time($interval), \"column_family\"",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "FiveMinuteRate"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "keyspace",
+                  "operator": "=~",
+                  "value": "/$KeySpace$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Write Rate",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "InfluxDB (Telegraf)",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 5,
+          "interval": "5m",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_column_family",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "column_family"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "cassandra_tables_storage",
+              "query": "SELECT mean(\"Count\") FROM \"cassandra_tables_storage\" WHERE \"region\" =~ /$Region$/ AND \"role\" =~ /$Role$/ AND \"keyspace\" =~ /$KeySpace$/ AND $timeFilter GROUP BY time($interval), \"column_family\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "Count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/$Region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "role",
+                  "operator": "=~",
+                  "value": "/$Role$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "keyspace",
+                  "operator": "=~",
+                  "value": "/$KeySpace$/"
+                }
+              ],
+              "target": ""
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Storage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ]
+        }
+      ],
+      "title": "New row"
+    }
+  ],
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {
+    "now": true,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "allFormat": "regex values",
+        "current": {
+          "text": "cassandra-premium",
+          "value": "cassandra-premium"
+        },
+        "datasource": "InfluxDB (Telegraf)",
+        "includeAll": false,
+        "multi": false,
+        "multiFormat": "regex values",
+        "name": "Role",
+        "options": [
+          {
+            "text": "cassandra-platform",
+            "value": "cassandra-platform",
+            "selected": false
+          },
+          {
+            "text": "cassandra-premium",
+            "value": "cassandra-premium",
+            "selected": true
+          }
+        ],
+        "query": "SHOW TAG VALUES WITH KEY = \"role\" WHERE role =~ /cassandra-/",
+        "refresh": true,
+        "type": "query"
+      },
+      {
+        "allFormat": "regex values",
+        "current": {
+          "text": "account",
+          "value": "account"
+        },
+        "datasource": "InfluxDB (Telegraf)",
+        "includeAll": false,
+        "multi": false,
+        "multiFormat": "regex values",
+        "name": "KeySpace",
+        "options": [
+          {
+            "text": "account",
+            "value": "account",
+            "selected": true
+          },
+          {
+            "text": "adhocbatch",
+            "value": "adhocbatch",
+            "selected": false
+          },
+          {
+            "text": "adhocpaymentservice",
+            "value": "adhocpaymentservice",
+            "selected": false
+          },
+          {
+            "text": "allocation",
+            "value": "allocation",
+            "selected": false
+          },
+          {
+            "text": "appversion",
+            "value": "appversion",
+            "selected": false
+          },
+          {
+            "text": "banning",
+            "value": "banning",
+            "selected": false
+          },
+          {
+            "text": "binding",
+            "value": "binding",
+            "selected": false
+          },
+          {
+            "text": "cancellation",
+            "value": "cancellation",
+            "selected": false
+          },
+          {
+            "text": "cepquerystore",
+            "value": "cepquerystore",
+            "selected": false
+          },
+          {
+            "text": "chargescheduling",
+            "value": "chargescheduling",
+            "selected": false
+          },
+          {
+            "text": "chargingservice",
+            "value": "chargingservice",
+            "selected": false
+          },
+          {
+            "text": "checkin",
+            "value": "checkin",
+            "selected": false
+          },
+          {
+            "text": "cities",
+            "value": "cities",
+            "selected": false
+          },
+          {
+            "text": "cmagic",
+            "value": "cmagic",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_allocation",
+            "value": "com_hailocab_service_allocation",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_allocationdeadtime",
+            "value": "com_hailocab_service_allocationdeadtime",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_bacchus",
+            "value": "com_hailocab_service_bacchus",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_customeraddress",
+            "value": "com_hailocab_service_customeraddress",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_customerevents",
+            "value": "com_hailocab_service_customerevents",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_customerhob",
+            "value": "com_hailocab_service_customerhob",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_customerjobstats",
+            "value": "com_hailocab_service_customerjobstats",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_driverevents",
+            "value": "com_hailocab_service_driverevents",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_driverid",
+            "value": "com_hailocab_service_driverid",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_driverstats",
+            "value": "com_hailocab_service_driverstats",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_errors",
+            "value": "com_hailocab_service_errors",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_eventanalysis",
+            "value": "com_hailocab_service_eventanalysis",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_exactfare",
+            "value": "com_hailocab_service_exactfare",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_expenses",
+            "value": "com_hailocab_service_expenses",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_fareheatmap",
+            "value": "com_hailocab_service_fareheatmap",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_fastpay",
+            "value": "com_hailocab_service_fastpay",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_fraudevents",
+            "value": "com_hailocab_service_fraudevents",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_h4blead",
+            "value": "com_hailocab_service_h4blead",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_h4bzoning",
+            "value": "com_hailocab_service_h4bzoning",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_jobhistory",
+            "value": "com_hailocab_service_jobhistory",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_paymentreconciliation",
+            "value": "com_hailocab_service_paymentreconciliation",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_personalisedid",
+            "value": "com_hailocab_service_personalisedid",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_priority",
+            "value": "com_hailocab_service_priority",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_referral",
+            "value": "com_hailocab_service_referral",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_s2cellspoints",
+            "value": "com_hailocab_service_s2cellspoints",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_sos",
+            "value": "com_hailocab_service_sos",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_thirdpartyuser",
+            "value": "com_hailocab_service_thirdpartyuser",
+            "selected": false
+          },
+          {
+            "text": "com_hailocab_service_webfeatureflags",
+            "value": "com_hailocab_service_webfeatureflags",
+            "selected": false
+          },
+          {
+            "text": "comhailocabservicethirdpartyuser",
+            "value": "comhailocabservicethirdpartyuser",
+            "selected": false
+          },
+          {
+            "text": "commshistory",
+            "value": "commshistory",
+            "selected": false
+          },
+          {
+            "text": "compute",
+            "value": "compute",
+            "selected": false
+          },
+          {
+            "text": "configservice",
+            "value": "configservice",
+            "selected": false
+          },
+          {
+            "text": "credits",
+            "value": "credits",
+            "selected": false
+          },
+          {
+            "text": "crmpreference",
+            "value": "crmpreference",
+            "selected": false
+          },
+          {
+            "text": "customer",
+            "value": "customer",
+            "selected": false
+          },
+          {
+            "text": "customer_destination",
+            "value": "customer_destination",
+            "selected": false
+          },
+          {
+            "text": "dedicateddrivers",
+            "value": "dedicateddrivers",
+            "selected": false
+          },
+          {
+            "text": "developer",
+            "value": "developer",
+            "selected": false
+          },
+          {
+            "text": "directoryservice",
+            "value": "directoryservice",
+            "selected": false
+          },
+          {
+            "text": "dodgyJob",
+            "value": "dodgyJob",
+            "selected": false
+          },
+          {
+            "text": "domtest",
+            "value": "domtest",
+            "selected": false
+          },
+          {
+            "text": "driver",
+            "value": "driver",
+            "selected": false
+          },
+          {
+            "text": "driver_preferences",
+            "value": "driver_preferences",
+            "selected": false
+          },
+          {
+            "text": "driverheatmaps",
+            "value": "driverheatmaps",
+            "selected": false
+          },
+          {
+            "text": "driverlicense",
+            "value": "driverlicense",
+            "selected": false
+          },
+          {
+            "text": "drivermigration",
+            "value": "drivermigration",
+            "selected": false
+          },
+          {
+            "text": "email",
+            "value": "email",
+            "selected": false
+          },
+          {
+            "text": "experiment",
+            "value": "experiment",
+            "selected": false
+          },
+          {
+            "text": "failedpaymentprediction",
+            "value": "failedpaymentprediction",
+            "selected": false
+          },
+          {
+            "text": "fleet",
+            "value": "fleet",
+            "selected": false
+          },
+          {
+            "text": "fleetactivity",
+            "value": "fleetactivity",
+            "selected": false
+          },
+          {
+            "text": "gamificationlite",
+            "value": "gamificationlite",
+            "selected": false
+          },
+          {
+            "text": "gocard_psp_service",
+            "value": "gocard_psp_service",
+            "selected": false
+          },
+          {
+            "text": "googlenow",
+            "value": "googlenow",
+            "selected": false
+          },
+          {
+            "text": "h4bbookings",
+            "value": "h4bbookings",
+            "selected": false
+          },
+          {
+            "text": "h4bcostcentre",
+            "value": "h4bcostcentre",
+            "selected": false
+          },
+          {
+            "text": "h4bjob",
+            "value": "h4bjob",
+            "selected": false
+          },
+          {
+            "text": "h4bjobhistory",
+            "value": "h4bjobhistory",
+            "selected": false
+          },
+          {
+            "text": "h4borgservice",
+            "value": "h4borgservice",
+            "selected": false
+          },
+          {
+            "text": "h4breporting",
+            "value": "h4breporting",
+            "selected": false
+          },
+          {
+            "text": "h4btransactions",
+            "value": "h4btransactions",
+            "selected": false
+          },
+          {
+            "text": "historicaldriverstats",
+            "value": "historicaldriverstats",
+            "selected": false
+          },
+          {
+            "text": "hob_editor",
+            "value": "hob_editor",
+            "selected": false
+          },
+          {
+            "text": "hobactivity",
+            "value": "hobactivity",
+            "selected": false
+          },
+          {
+            "text": "hobs",
+            "value": "hobs",
+            "selected": false
+          },
+          {
+            "text": "i18nstore",
+            "value": "i18nstore",
+            "selected": false
+          },
+          {
+            "text": "ibeacon",
+            "value": "ibeacon",
+            "selected": false
+          },
+          {
+            "text": "job",
+            "value": "job",
+            "selected": false
+          },
+          {
+            "text": "jobEvents",
+            "value": "jobEvents",
+            "selected": false
+          },
+          {
+            "text": "jobPoints",
+            "value": "jobPoints",
+            "selected": false
+          },
+          {
+            "text": "jobtrackingservice",
+            "value": "jobtrackingservice",
+            "selected": false
+          },
+          {
+            "text": "lead",
+            "value": "lead",
+            "selected": false
+          },
+          {
+            "text": "login",
+            "value": "login",
+            "selected": false
+          },
+          {
+            "text": "loyalty",
+            "value": "loyalty",
+            "selected": false
+          },
+          {
+            "text": "merchant_payment",
+            "value": "merchant_payment",
+            "selected": false
+          },
+          {
+            "text": "merchants",
+            "value": "merchants",
+            "selected": false
+          },
+          {
+            "text": "metrics",
+            "value": "metrics",
+            "selected": false
+          },
+          {
+            "text": "mooddetector",
+            "value": "mooddetector",
+            "selected": false
+          },
+          {
+            "text": "note",
+            "value": "note",
+            "selected": false
+          },
+          {
+            "text": "organization",
+            "value": "organization",
+            "selected": false
+          },
+          {
+            "text": "organizationgeneric",
+            "value": "organizationgeneric",
+            "selected": false
+          },
+          {
+            "text": "paymentvalidation",
+            "value": "paymentvalidation",
+            "selected": false
+          },
+          {
+            "text": "personalised_id",
+            "value": "personalised_id",
+            "selected": false
+          },
+          {
+            "text": "phone",
+            "value": "phone",
+            "selected": false
+          },
+          {
+            "text": "place",
+            "value": "place",
+            "selected": false
+          },
+          {
+            "text": "platformeventcorrelation",
+            "value": "platformeventcorrelation",
+            "selected": false
+          },
+          {
+            "text": "playgroundservice",
+            "value": "playgroundservice",
+            "selected": false
+          },
+          {
+            "text": "prebooking",
+            "value": "prebooking",
+            "selected": false
+          },
+          {
+            "text": "prebooking_list",
+            "value": "prebooking_list",
+            "selected": false
+          },
+          {
+            "text": "prebooking_risk",
+            "value": "prebooking_risk",
+            "selected": false
+          },
+          {
+            "text": "prebooking_scheduler",
+            "value": "prebooking_scheduler",
+            "selected": false
+          },
+          {
+            "text": "pricing",
+            "value": "pricing",
+            "selected": false
+          },
+          {
+            "text": "priorityservice",
+            "value": "priorityservice",
+            "selected": false
+          },
+          {
+            "text": "profileFlow",
+            "value": "profileFlow",
+            "selected": false
+          },
+          {
+            "text": "profile_service",
+            "value": "profile_service",
+            "selected": false
+          },
+          {
+            "text": "provisioning",
+            "value": "provisioning",
+            "selected": false
+          },
+          {
+            "text": "pyramis",
+            "value": "pyramis",
+            "selected": false
+          },
+          {
+            "text": "robomon",
+            "value": "robomon",
+            "selected": false
+          },
+          {
+            "text": "shift",
+            "value": "shift",
+            "selected": false
+          },
+          {
+            "text": "statement",
+            "value": "statement",
+            "selected": false
+          },
+          {
+            "text": "sync",
+            "value": "sync",
+            "selected": false
+          },
+          {
+            "text": "system",
+            "value": "system",
+            "selected": false
+          },
+          {
+            "text": "system_auth",
+            "value": "system_auth",
+            "selected": false
+          },
+          {
+            "text": "system_distributed",
+            "value": "system_distributed",
+            "selected": false
+          },
+          {
+            "text": "system_traces",
+            "value": "system_traces",
+            "selected": false
+          },
+          {
+            "text": "taxipaymentservice",
+            "value": "taxipaymentservice",
+            "selected": false
+          },
+          {
+            "text": "trace",
+            "value": "trace",
+            "selected": false
+          },
+          {
+            "text": "triggeredcomms",
+            "value": "triggeredcomms",
+            "selected": false
+          },
+          {
+            "text": "triggeredcomms_scheduler",
+            "value": "triggeredcomms_scheduler",
+            "selected": false
+          },
+          {
+            "text": "uploads",
+            "value": "uploads",
+            "selected": false
+          },
+          {
+            "text": "verificationservice",
+            "value": "verificationservice",
+            "selected": false
+          },
+          {
+            "text": "virtualmeter",
+            "value": "virtualmeter",
+            "selected": false
+          },
+          {
+            "text": "wallet",
+            "value": "wallet",
+            "selected": false
+          },
+          {
+            "text": "web_provisioning",
+            "value": "web_provisioning",
+            "selected": false
+          },
+          {
+            "text": "zoning",
+            "value": "zoning",
+            "selected": false
+          }
+        ],
+        "query": "SHOW TAG VALUES WITH KEY = \"keyspace\" WHERE role =~ /cassandra-/",
+        "refresh": true,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allFormat": "regex values",
+        "current": {
+          "text": "eu-west-1",
+          "value": "eu-west-1"
+        },
+        "datasource": "InfluxDB (Telegraf)",
+        "includeAll": false,
+        "multi": false,
+        "multiFormat": "regex values",
+        "name": "Region",
+        "options": [
+          {
+            "text": "eu-west-1",
+            "value": "eu-west-1",
+            "selected": true
+          },
+          {
+            "text": "us-east-1",
+            "value": "us-east-1",
+            "selected": false
+          }
+        ],
+        "query": "SHOW TAG VALUES WITH KEY = \"region\" WHERE role =~ /cassandra-/",
+        "refresh": true,
+        "type": "query"
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "30s",
+  "schemaVersion": 8,
+  "version": 21,
+  "links": []
+}
