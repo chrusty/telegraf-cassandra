@@ -53,6 +53,8 @@ for column_family_path in jolokia_data['value']:
 		field_value = jolokia_data['value'][column_family_path][field]
 		if(type(field_value) == int) | (type(field_value) == float):
 			field_values.append('%s=%s' % (field, field_value))
+		elif(field_value == None):
+			pass
 		else:
 			field_values.append('%s="%s"' % (field, field_value))
 
