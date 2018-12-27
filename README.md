@@ -1,3 +1,5 @@
+# Archived this because [Telegraf now handles Cassandra/Jolokia natively ](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/cassandra) #
+
 # telegraf-cassandra
 Config for monitoring Cassandra using Telegraf's "Jolokia" plugin
 
